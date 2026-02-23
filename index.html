@@ -1,26 +1,110 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Top Sản Phẩm Đáng Mua</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {font-family: Arial; background:#f5f5f5; padding:15px}
-        .box {background:#fff; padding:15px; border-radius:10px; margin-bottom:15px}
-        img {width:100%; border-radius:10px}
-        a {display:block; text-align:center; background:#ff2d55; color:#fff; padding:12px;
-           border-radius:8px; text-decoration:none; font-weight:bold}
-    </style>
+  <meta charset="UTF-8">
+  <title>Bói Tình Yêu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff5f7;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .box {
+      max-width: 400px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #ff3366;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #ff3366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #e62e5c;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    .donate {
+      margin-top: 30px;
+    }
+    .donate img {
+      max-width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .note {
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
-<h2>🔥 Sản Phẩm Hot 🔥</h2>
+  <div class="box">
+    <h1>💖 BÓI TÌNH YÊU 💖</h1>
 
-<div class="box">
-    <img src="https://via.placeholder.com/400">
-    <p>Sản phẩm 1 – sale mạnh</p>
-    <a href="LINK_AFFILIATE_CUA_MAY" target="_blank">MUA NGAY</a>
-</div>
+    <input id="name1" placeholder="Tên của bạn">
+    <input id="name2" placeholder="Tên người ấy">
+
+    <button onclick="boi()">XEM KẾT QUẢ</button>
+
+    <div id="result"></div>
+
+    <div class="donate">
+      <h3>💝 Ủng hộ duy trì web 💝</h3>
+      <p>Nếu thấy đúng hoặc vui, quét QR ủng hộ mình nhé 😘</p>
+      <img src="qr-donate.png" alt="QR Donate">
+      <p class="note">Donate hoàn toàn tự nguyện ❤️</p>
+    </div>
+  </div>
+
+<script>
+  const ketQua = [
+    "💞 Hai bạn hợp nhau 87% – chỉ cần một người chủ động!",
+    "🔥 Người ấy có cảm tình nhưng đang thử thách bạn.",
+    "😳 Sắp có tin nhắn bất ngờ trong 7 ngày tới.",
+    "💔 Tình cảm có nhưng chưa đúng thời điểm.",
+    "💖 Đây là mối quan hệ rất tiềm năng, đừng bỏ lỡ!"
+  ];
+
+  function boi() {
+    const n1 = document.getElementById("name1").value.trim();
+    const n2 = document.getElementById("name2").value.trim();
+
+    if (!n1 || !n2) {
+      alert("Nhập đủ tên nha 😅");
+      return;
+    }
+
+    const random = Math.floor(Math.random() * ketQua.length);
+    document.getElementById("result").innerHTML = ketQua[random];
+  }
+</script>
 
 </body>
 </html>
