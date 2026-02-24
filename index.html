@@ -1,137 +1,115 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Bot Bói Tình Yêu by Nguyễn Quang</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>ĐỔI MÃ LIÊN QUÂN - QUÀ MIỄN PHÍ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<!-- GOOGLE FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+        .box {
+            background: #111;
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,255,255,0.3);
+        }
 
-<style>
-body{
-  font-family:'Quicksand',sans-serif;
-  background:linear-gradient(180deg,#ffe4ec,#fff);
-  text-align:center;
-  margin:0;
-  overflow:hidden;
-}
-.box{
-  max-width:420px;
-  margin:50px auto;
-  background:#fff;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
-  position:relative;
-  z-index:2;
-}
-h1{
-  color:#ff3366;
-  margin-bottom:15px;
-}
-input{
-  width:90%;
-  padding:11px;
-  margin:8px 0;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:15px;
-}
-button{
-  width:100%;
-  padding:13px;
-  border:none;
-  border-radius:12px;
-  background:#ff3366;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
-button:hover{background:#e62e5c}
-#percent{
-  font-size:30px;
-  color:#e11d48;
-  margin-top:10px;
-}
-#result{font-size:18px;margin-top:10px}
-#donate{display:none;margin-top:25px}
-#donate img{
-  max-width:220px;
-  border-radius:12px;
-  box-shadow:0 0 10px #ccc;
-}
-.note{font-size:13px;color:#666}
+        h1 {
+            color: #00eaff;
+            margin-bottom: 10px;
+        }
 
-/* TUYẾT */
-.snow{
-  position:fixed;
-  top:-10px;
-  color:white;
-  user-select:none;
-  pointer-events:none;
-  z-index:1;
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  to{
-    transform:translateY(110vh);
-  }
-}
-</style>
+        p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 15px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            font-size: 16px;
+            background: #00eaff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #00c0cc;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00ff9c;
+        }
+
+        .error {
+            color: #ff4c4c;
+        }
+    </style>
 </head>
 <body>
 
 <div class="box">
-  <h1>🤖 Bot Bói Tình Yêu 🤖<br>by Nguyễn Quang</h1>
+    <h1>ĐỔI MÃ LIÊN QUÂN</h1>
+    <p>Nhập mã để nhận ACC Liên Quân ngẫu nhiên</p>
 
-  <input id="name1" placeholder="Tên của bạn">
-  <input id="name2" placeholder="Tên người ấy">
+    <input type="text" id="codeInput" placeholder="Nhập mã đổi thưởng">
 
-  <button onclick="boi()">XEM KẾT QUẢ</button>
+    <button onclick="redeemCode()">ĐỔI NGAY</button>
 
-  <div id="percent"></div>
-  <div id="result"></div>
-
-  <div id="donate">
-    <h3>💝 Hợp trên 60% rồi đó!</h3>
-    <p>Nếu thấy đúng, quét QR ủng hộ mình nhé 😘</p>
-    <img src="qr-donate.png">
-    <p class="note">Donate hoàn toàn tự nguyện ❤️</p>
-  </div>
+    <div id="result" class="result"></div>
 </div>
 
 <script>
-/* BOT RANDOM % */
-function boi(){
-  const n1=document.getElementById("name1").value.trim();
-  const n2=document.getElementById("name2").value.trim();
-  if(!n1||!n2){alert("Nhập đủ tên nha 😅");return;}
+    const codes = {
+        "PEPSI11109": true,
+        "COCA3379": true,
+        "MMHFJHD": true,
+        "HGGJGDDM": true
+    };
 
-  const percent=Math.floor(Math.random()*101);
-  document.getElementById("percent").innerHTML=percent+"% HỢP NHAU 💘";
+    function redeemCode() {
+        const input = document.getElementById("codeInput").value.trim().toUpperCase();
+        const result = document.getElementById("result");
 
-  if(percent>60){
-    document.getElementById("result").innerHTML="🔥 Hai bạn rất có duyên, dễ tiến xa!";
-    document.getElementById("donate").style.display="block";
-  }else{
-    document.getElementById("result").innerHTML="💔 Duyên chưa đủ, cần thêm thời gian.";
-    document.getElementById("donate").style.display="none";
-  }
-}
-
-/* TUYẾT RƠI */
-function snow(){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.innerHTML="❄";
-  s.style.left=Math.random()*100+"vw";
-  s.style.fontSize=(10+Math.random()*20)+"px";
-  s.style.animationDuration=(3+Math.random()*5)+"s";
-  document.body.appendChild(s);
-  setTimeout(()=>{s.remove()},8000);
-}
-setInterval(snow,200);
+        if (codes[input]) {
+            delete codes[input];
+            result.innerHTML = "🎉 ĐỔI MÃ THÀNH CÔNG!<br>ACC LIÊN QUÂN ĐÃ ĐƯỢC GỬI!";
+            result.className = "result success";
+        } else {
+            result.innerHTML = "❌ MÃ KHÔNG HỢP LỆ HOẶC ĐÃ ĐƯỢC SỬ DỤNG!";
+            result.className = "result error";
+        }
+    }
 </script>
 
 </body>
